@@ -18,12 +18,8 @@ import java.util.Set;
 public class NIO2Server extends Thread {
     public void run() {
         try {
-
-
             AsynchronousServerSocketChannel serverSock = AsynchronousServerSocketChannel.open().bind(new InetSocketAddress(InetAddress.getLocalHost(), 8888));
             serverSock.accept(serverSock, new CompletionHandler<AsynchronousSocketChannel, AsynchronousServerSocketChannel>() {
-
-
                 // 为异步操作指定 CompletionHandler 回调函数
                 @Override
                 public void completed(AsynchronousSocketChannel sockChannel, AsynchronousServerSocketChannel serverSock) {
@@ -41,21 +37,18 @@ public class NIO2Server extends Thread {
 
                 }
             });
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     private void sayHelloWorld(AsynchronousSocketChannel server, ByteBuffer buffer) throws IOException {
-        try  {
+        try {
             server.write(buffer);
-        }finally {
+        } finally {
             try {
                 //关闭处理完的socket，并重新调用accept等待新的连接
                 server.close();
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
