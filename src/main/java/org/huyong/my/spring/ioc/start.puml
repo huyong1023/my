@@ -1,0 +1,123 @@
+@startuml
+hide footbox
+title spring Application init
+
+
+participant AbstractApplicationContext
+participant AbstractRefreshableApplicationContext
+participant AbstractXmlApplicationContext
+participant AbstractBeanDefinitionReader
+
+participant XmlBeanDefinitionReader
+
+participant DefaultBeanDefinitionDocumentReader
+participant BeanDefinitionParserDelegate
+participant XmlWebApplicationContext
+
+ -> AbstractApplicationContext : constructor
+activate AbstractApplicationContext
+
+    AbstractApplicationContext -> AbstractApplicationContext : refresh()
+     activate AbstractApplicationContext
+
+        AbstractApplicationContext -> AbstractApplicationContext : prepareRefresh()
+
+
+        AbstractApplicationContext -> AbstractApplicationContext : obtainFreshBeanFactory()
+            activate AbstractApplicationContext
+            AbstractApplicationContext -> AbstractRefreshableApplicationContext : refreshBeanFactory()
+
+
+                activate AbstractRefreshableApplicationContext
+                AbstractRefreshableApplicationContext -> AbstractRefreshableApplicationContext : createBeanFactory()
+                AbstractRefreshableApplicationContext -> AbstractRefreshableApplicationContext : customizeBeanFactory
+                AbstractRefreshableApplicationContext -> AbstractXmlApplicationContext : loadBeanDefinitions(org.springframework.beans.factory.support.DefaultListableBeanFactory)
+                    AbstractXmlApplicationContext -> AbstractXmlApplicationContext : loadBeanDefinitions(org.springframework.beans.factory.xml.XmlBeanDefinitionReader)
+                        AbstractXmlApplicationContext -> AbstractBeanDefinitionReader : loadBeanDefinitions(java.lang.String...)
+                            AbstractBeanDefinitionReader -> AbstractBeanDefinitionReader : loadBeanDefinitions(java.lang.String, java.util.Set<org.springframework.core.io.Resource>)
+                                AbstractBeanDefinitionReader -> XmlBeanDefinitionReader : loadBeanDefinitions(org.springframework.core.io.Resource)
+                                    XmlBeanDefinitionReader -> XmlBeanDefinitionReader:loadBeanDefinitions(org.springframework.core.io.support.EncodedResource)
+
+
+                                        activate XmlBeanDefinitionReader
+                                        XmlBeanDefinitionReader -> XmlBeanDefinitionReader: doLoadBeanDefinitions
+
+
+                                            activate XmlBeanDefinitionReader
+                                            XmlBeanDefinitionReader -> XmlBeanDefinitionReader : registerBeanDefinitions
+
+                                                activate XmlBeanDefinitionReader
+                                                XmlBeanDefinitionReader -> XmlBeanDefinitionReader : createBeanDefinitionDocumentReader
+
+                                                XmlBeanDefinitionReader -> DefaultBeanDefinitionDocumentReader : registerBeanDefinitions
+
+                                                    DefaultBeanDefinitionDocumentReader -> DefaultBeanDefinitionDocumentReader : doRegisterBeanDefinitions
+
+                                                    activate DefaultBeanDefinitionDocumentReader
+                                                        DefaultBeanDefinitionDocumentReader -> DefaultBeanDefinitionDocumentReader : createDelegate
+                                                        DefaultBeanDefinitionDocumentReader -> DefaultBeanDefinitionDocumentReader : preProcessXml
+                                                        DefaultBeanDefinitionDocumentReader -> DefaultBeanDefinitionDocumentReader : parseBeanDefinitions
+                                                            DefaultBeanDefinitionDocumentReader -> BeanDefinitionParserDelegate : parseCustomElement(org.w3c.dom.Element)
+
+                                                                BeanDefinitionParserDelegate -> DefaultNamespaceHandlerResolver : resolve()
+                                                                    DefaultNamespaceHandlerResolver -> NamespaceHandler : parse()
+                                                                    DefaultNamespaceHandlerResolver <- NamespaceHandler : BeanDefinition
+                                                                BeanDefinitionParserDelegate <- DefaultNamespaceHandlerResolver
+                                                            DefaultBeanDefinitionDocumentReader <- BeanDefinitionParserDelegate
+
+                                                        DefaultBeanDefinitionDocumentReader -> DefaultBeanDefinitionDocumentReader : postProcessXml
+
+                                                        activate DefaultBeanDefinitionDocumentReader
+                                                        deactivate DefaultBeanDefinitionDocumentReader
+                                                    deactivate DefaultBeanDefinitionDocumentReader
+
+
+                                                XmlBeanDefinitionReader <- DefaultBeanDefinitionDocumentReader
+                                                deactivate DefaultBeanDefinitionDocumentReader
+
+                                             deactivate XmlBeanDefinitionReader
+
+                                        deactivate XmlBeanDefinitionReader
+                                    deactivate XmlBeanDefinitionReader
+                                AbstractBeanDefinitionReader <- XmlBeanDefinitionReader
+
+                             AbstractXmlApplicationContext <- AbstractBeanDefinitionReader
+                AbstractRefreshableApplicationContext <- AbstractXmlApplicationContext
+
+                deactivate AbstractRefreshableApplicationContext
+
+
+
+
+            AbstractApplicationContext <- AbstractRefreshableApplicationContext
+            AbstractApplicationContext -> AbstractRefreshableApplicationContext:getBeanFactory()
+            AbstractApplicationContext <- AbstractRefreshableApplicationContext
+            deactivate AbstractApplicationContext
+
+
+        AbstractApplicationContext-> AbstractApplicationContext:prepareBeanFactory()
+
+
+
+         AbstractApplicationContext-> AbstractApplicationContext:postProcessBeanFactory()
+         AbstractApplicationContext-> AbstractApplicationContext:invokeBeanFactoryPostProcessors()
+         AbstractApplicationContext-> AbstractApplicationContext:registerBeanPostProcessors()
+         AbstractApplicationContext-> AbstractApplicationContext:initMessageSource()
+         AbstractApplicationContext-> AbstractApplicationContext:initApplicationEventMulticaster()
+         AbstractApplicationContext-> AbstractApplicationContext:onRefresh()
+         AbstractApplicationContext-> AbstractApplicationContext:registerListeners()
+         AbstractApplicationContext-> AbstractApplicationContext:finishBeanFactoryInitialization()
+            AbstractApplicationContext -> DefaultListableBeanFactory:preInstantiateSingletons()
+                DefaultListableBeanFactory->AbstractBeanFactory:getBean(java.lang.String)
+            AbstractApplicationContext <- DefaultListableBeanFactory
+         AbstractApplicationContext-> AbstractApplicationContext:finishRefresh()
+
+    deactivate AbstractApplicationContext
+
+
+
+
+<- AbstractApplicationContext
+deactivate AbstractApplicationContext
+
+@enduml

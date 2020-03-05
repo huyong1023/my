@@ -1,0 +1,51 @@
+@startuml
+
+interface Servlet {
+    init(ServletConfig config)
+}
+interface ServletConfig
+interface Serializable
+
+abstract class  GenericServlet{
+    init(ServletConfig config)
+    init()
+}
+
+abstract class HttpServlet{
+
+}
+
+abstract class FrameworkServlet
+
+class DispatcherServlet
+
+
+interface Aware
+interface ApplicationContextAware
+
+
+abstract class HttpServletBean{
+    init();
+    initServletBean()
+}
+
+class FrameworkServlet {
+    initServletBean()
+}
+
+
+Aware <|.. ApplicationContextAware
+ApplicationContextAware <|.. DispatcherServlet
+
+
+Servlet <|.. GenericServlet
+ServletConfig <|.. GenericServlet
+Serializable <|.. GenericServlet
+
+GenericServlet <|-- HttpServlet
+HttpServlet <|-- HttpServletBean
+HttpServletBean <|-- FrameworkServlet
+FrameworkServlet <|-- DispatcherServlet
+
+
+@enduml

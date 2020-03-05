@@ -1,0 +1,74 @@
+@startuml
+hide footbox
+title spring IOC
+
+
+participant DefaultListableBeanFactory
+participant AbstractBeanFactory
+participant AbstractAutowireCapableBeanFactory
+participant AbstractAutowireCapableBeanFactory
+participant SimpleInstantiationStrategy
+participant CglibSubclassingInstantiationStrategy
+
+activate DefaultListableBeanFactory
+ -> DefaultListableBeanFactory : getBean()
+DefaultListableBeanFactory -> DefaultListableBeanFactory : resolveNamedBean()
+
+
+
+
+DefaultListableBeanFactory -> AbstractBeanFactory : getParentBeanFactory()
+AbstractBeanFactory ->  DefaultListableBeanFactory
+
+
+activate AbstractBeanFactory
+DefaultListableBeanFactory -> AbstractBeanFactory : getBean()
+
+
+AbstractBeanFactory -> AbstractBeanFactory : doGetBean()
+activate AbstractBeanFactory
+
+AbstractBeanFactory -> AbstractBeanFactory : transformedBeanName()
+
+activate AbstractAutowireCapableBeanFactory
+AbstractBeanFactory -> AbstractAutowireCapableBeanFactory : createBean()
+
+AbstractAutowireCapableBeanFactory  -> AbstractAutowireCapableBeanFactory : resolveBeforeInstantiation()
+
+
+AbstractAutowireCapableBeanFactory -> AbstractAutowireCapableBeanFactory : doCreateBean()
+activate AbstractAutowireCapableBeanFactory
+
+AbstractAutowireCapableBeanFactory -> AbstractAutowireCapableBeanFactory : createBeanInstance()
+activate AbstractAutowireCapableBeanFactory
+AbstractAutowireCapableBeanFactory ->  AbstractAutowireCapableBeanFactory : determineConstructorsFromBeanPostProcessors()
+AbstractAutowireCapableBeanFactory ->  SimpleInstantiationStrategy : instantiate()
+SimpleInstantiationStrategy -> CglibSubclassingInstantiationStrategy : instantiateWithMethodInjection()
+CglibSubclassingInstantiationStrategy -> SimpleInstantiationStrategy
+SimpleInstantiationStrategy -> AbstractAutowireCapableBeanFactory
+
+deactivate AbstractAutowireCapableBeanFactory
+
+AbstractAutowireCapableBeanFactory -> AbstractAutowireCapableBeanFactory : populateBean()
+AbstractAutowireCapableBeanFactory -> AbstractAutowireCapableBeanFactory : initializeBean()
+
+deactivate AbstractAutowireCapableBeanFactory
+
+
+
+
+
+
+deactivate AbstractAutowireCapableBeanFactory
+deactivate AbstractAutowireCapableBeanFactory
+
+deactivate AbstractBeanFactory
+
+
+AbstractBeanFactory -> DefaultListableBeanFactory
+
+
+deactivate DefaultListableBeanFactory
+deactivate DefaultListableBeanFactory
+
+@enduml
