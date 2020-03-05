@@ -1,0 +1,132 @@
+@startuml
+
+
+interface ResourceLoader {
+    getResource(String location)
+    getClassLoader()
+}
+
+ResourceLoader <|.. DefaultResourceLoader
+
+
+interface ProtocolResolver{
+    resolve(String location, ResourceLoader resourceLoader);
+}
+
+class DefaultResourceLoader {
+    - ClassLoader classLoader
+    - Set<ProtocolResolver> protocolResolvers;
+    - Map<Class<?>, Map<Resource, ?>> resourceCaches;
+}
+
+DefaultResourceLoader "1" *-- "N" ProtocolResolver
+
+interface AutoCloseable
+interface Closeable {
+    close()
+}
+AutoCloseable <|-- Closeable
+
+interface Lifecycle {
+    start()
+    stop()
+    isRunning()
+}
+
+
+
+interface EnvironmentCapable {
+    getEnvironment()
+}
+
+interface BeanFactory {
+    getBean(String name)
+    getBeanProvider(Class<T> requiredType)
+    getType(String name)
+    getAliases(String name)
+}
+
+interface ListableBeanFactory
+
+BeanFactory <|-- ListableBeanFactory
+
+
+interface HierarchicalBeanFactory{
+    getParentBeanFactory();
+}
+
+BeanFactory <|-- HierarchicalBeanFactory
+
+interface MessageSource {
+    getMessage(String code, @Nullable Object[] args, @Nullable String defaultMessage, Locale locale);
+}
+interface ApplicationEventPublisher {
+    publishEvent(ApplicationEvent event)
+}
+interface ResourcePatternResolver
+ResourceLoader <|-- ResourcePatternResolver
+
+
+
+
+interface ApplicationContext
+
+EnvironmentCapable <|-- ApplicationContext
+ListableBeanFactory <|-- ApplicationContext
+HierarchicalBeanFactory <|-- ApplicationContext
+MessageSource <|-- ApplicationContext
+ApplicationEventPublisher <|-- ApplicationContext
+ResourcePatternResolver <|-- ApplicationContext
+
+
+interface ConfigurableApplicationContext
+
+
+Closeable <|-- ConfigurableApplicationContext
+Lifecycle <|-- ConfigurableApplicationContext
+ApplicationContext <|-- ConfigurableApplicationContext
+
+
+abstract class AbstractApplicationContext{
+    ResourcePatternResolver resourcePatternResolver
+    refresh()
+}
+
+DefaultResourceLoader <|-- AbstractApplicationContext
+ConfigurableApplicationContext <|.. AbstractApplicationContext
+
+
+abstract class AbstractRefreshableApplicationContext {
+    DefaultListableBeanFactory beanFactory
+    loadBeanDefinitions(DefaultListableBeanFactory beanFactory)
+}
+
+AbstractApplicationContext <|-- AbstractRefreshableApplicationContext
+
+
+interface BeanNameAware
+
+interface InitializingBean
+
+abstract class AbstractRefreshableConfigApplicationContext {
+    String[] configLocations;
+}
+
+AbstractRefreshableApplicationContext <|-- AbstractRefreshableConfigApplicationContext
+BeanNameAware <|.. AbstractRefreshableConfigApplicationContext
+InitializingBean <|.. AbstractRefreshableConfigApplicationContext
+
+abstract class AbstractXmlApplicationContext
+
+AbstractRefreshableConfigApplicationContext <|-- AbstractXmlApplicationContext
+
+class ClassPathXmlApplicationContext
+
+
+AbstractXmlApplicationContext <|-- ClassPathXmlApplicationContext
+
+
+class DefaultListableBeanFactory
+
+AbstractRefreshableApplicationContext --  DefaultListableBeanFactory
+@enduml

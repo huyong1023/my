@@ -1,0 +1,23 @@
+@startuml
+
+interface EventListener{
+
+}
+interface ServletContextListener{
+    contextInitialized(ServletContextEvent sce);
+}
+class ContextLoader{
+    initWebApplicationContext(ServletContext servletContext);
+}
+
+class ContextLoaderListener{
+    contextInitialized(ServletContextEvent sce);
+}
+
+EventListener <|-- ServletContextListener
+ServletContextListener <|.. ContextLoaderListener
+
+ContextLoader <|-- ContextLoaderListener
+
+
+@enduml

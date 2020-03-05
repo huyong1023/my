@@ -1,0 +1,37 @@
+@startuml
+
+package Factory {
+
+    interface Product {
+        use()
+    }
+
+    Class ConcreteProduct {
+        use()
+    }
+
+    Product <|.. ConcreteProduct
+
+
+
+    interface ProductFactory{
+
+        factoryMethod()
+    }
+
+    Class ConcreteProductFactory {
+
+        factoryMethod()
+    }
+
+
+
+
+
+    ProductFactory <|.. ConcreteProductFactory
+
+    ConcreteProductFactory ..> ConcreteProduct
+
+}
+
+@enduml

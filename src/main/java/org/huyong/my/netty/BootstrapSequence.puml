@@ -1,0 +1,68 @@
+@startuml
+
+Client -> Bootstrap : connect
+activate Bootstrap
+
+    Bootstrap -> AbstractBootstrap: initAndRegister()
+    activate AbstractBootstrap
+
+
+        AbstractBootstrap -> ChannelFactory: newChannel
+        AbstractBootstrap <-- ChannelFactory : Channel
+
+        AbstractBootstrap -> Bootstrap : init(Channel)
+        AbstractBootstrap <-- Bootstrap
+
+        AbstractBootstrap -> EventLoopGroup : register(io.netty.channel.Channel)
+        AbstractBootstrap <-- EventLoopGroup : ChannelFuture
+
+        Bootstrap <-- AbstractBootstrap : ChannelFuture
+
+    deactivate AbstractBootstrap
+
+
+    Bootstrap -> ChannelFuture : channel()
+    Bootstrap <-- ChannelFuture : Channel
+
+
+
+    Bootstrap -> Bootstrap : doResolveAndConnect0(Channel channel, SocketAddress ,  SocketAddress ,  ChannelPromise )
+    activate Bootstrap
+
+        Bootstrap -> AddressResolverGroup : getResolver
+        Bootstrap <-- AddressResolverGroup : AddressResolver
+
+
+        Bootstrap -> Bootstrap : doConnect (SocketAddress , SocketAddress , ChannelPromise )
+        activate Bootstrap
+
+            Bootstrap -> Channel : eventLoop()
+            Bootstrap <-- Channel
+
+            Bootstrap -> EventLoop : execute()
+            group Runnable
+            EventLoop -> Channel:connect(SocketAddress , ChannelPromise )
+            end
+            Bootstrap <-- EventLoop
+
+        deactivate Bootstrap
+
+        Bootstrap -> Future : addListener (FutureListener )
+            group operationComplete
+                Future -> Channel:close
+            end
+        Bootstrap <-- Future
+
+
+        Bootstrap <-- Bootstrap
+    deactivate Bootstrap
+
+Client <-- Bootstrap : ChannelFuture
+deactivate Bootstrap
+
+
+Client -> ChannelFuture : sync
+group sync
+end
+
+@enduml

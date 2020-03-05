@@ -13,6 +13,7 @@ public class StampedSample {
         try {
             write();
         } finally {
+
             sl.unlockWrite(stamp);
         }
     }

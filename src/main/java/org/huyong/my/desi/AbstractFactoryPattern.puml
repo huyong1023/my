@@ -1,0 +1,104 @@
+@startuml
+
+package AbstractFactoryPattern {
+
+    together {
+        interface ProductA
+        class ProductA1
+        class ProductA2
+    }
+
+
+
+    interface ProductA {
+        eat()
+    }
+
+
+    class ProductA1 {
+        eat()
+    }
+
+
+    class ProductA2 {
+        eat()
+    }
+
+    ProductA <|.. ProductA1
+    ProductA <|.. ProductA2
+
+
+
+
+
+    together {
+        interface ProductB
+        class ProductB1
+        class ProductB2
+
+    }
+
+    interface ProductB {
+        use()
+    }
+
+    class ProductB1 {
+        use();
+    }
+
+    class ProductB2 {
+        use();
+    }
+
+
+
+
+
+    ProductB <|.. ProductB1
+    ProductB <|.. ProductB2
+
+    abstract class AbstractProductFactory {
+        operations()
+
+        {abstract} ProductA createProductA();
+        {abstract} ProductB createProuuctB();
+
+
+    }
+
+
+    class ConcreteProductFactory1 {
+        createProductA()
+        createProductB()
+
+    }
+
+    ConcreteProductFactory1 ..> ProductA1
+    ConcreteProductFactory1 ..> ProductB1
+
+
+    class ConcreteProductFactory2 {
+        createProductA()
+        createProductB()
+
+    }
+
+    ConcreteProductFactory2 ..> ProductA2
+    ConcreteProductFactory2 ..> ProductB2
+
+
+
+    AbstractProductFactory <|-- ConcreteProductFactory1
+    AbstractProductFactory <|-- ConcreteProductFactory2
+
+
+
+    class Client {
+
+    }
+
+
+    Client ..> AbstractProductFactory
+}
+
+@enduml

@@ -1,0 +1,34 @@
+@startuml
+
+package SimpleFactory  {
+
+
+    interface Product {
+        use()
+    }
+
+    class ConcreteProductA {
+        use()
+    }
+
+
+    class ConcreteProductB{
+        use()
+    }
+
+    Product <|.. ConcreteProductA
+    Product <|.. ConcreteProductB
+
+
+    class Factory{
+        createProduct(String )
+    }
+
+
+    Factory ..> ConcreteProductA
+    Factory ..> ConcreteProductB
+
+
+}
+
+@enduml

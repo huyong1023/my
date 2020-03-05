@@ -1,0 +1,83 @@
+@startuml
+
+title NioSocketChannel
+
+    interface Channel
+    interface ChannelOutboundInvoker
+    interface DuplexChannel
+    interface SocketChannel
+
+
+
+    abstract class AbstractNioByteChannel
+    abstract class AbstractNioChannel
+    abstract class AbstractChannel
+
+
+    class NioSocketChannel {
+        - SelectorProvider DEFAULT_SELECTOR_PROVIDER
+        - SocketChannelConfig config;
+        - DefaultChannelPipeline pipeline;
+        - VoidChannelPromise unsafeVoidPromise;
+        - CloseFuture closeFuture ;
+        - SocketAddress localAddress;
+        - SocketAddress remoteAddress;
+        - EventLoop eventLoop;
+
+
+        + connect(java.net.SocketAddress, io.netty.channel.ChannelPromise)
+        + bind(java.net.SocketAddress, io.netty.channel.ChannelPromise)
+
+    }
+
+
+
+
+    Channel <|-down- ChannelOutboundInvoker
+    ChannelOutboundInvoker <|-down- DuplexChannel
+    DuplexChannel <|-down- SocketChannel
+
+
+    AbstractChannel <|-down- AbstractNioChannel
+    AbstractNioChannel <|-down- AbstractNioByteChannel
+
+
+    NioSocketChannel .up.|> SocketChannel
+    NioSocketChannel -up-|> AbstractNioByteChannel
+
+
+
+    abstract class SelectorProvider
+
+    class DefaultChannelPipeline {
+        -AbstractChannelHandlerContext head;
+        -AbstractChannelHandlerContext tail;
+
+        - Channel channel;
+        - ChannelFuture succeededFuture;
+        - VoidChannelPromise voidPromise;
+
+        + bind(java.net.SocketAddress, io.netty.channel.ChannelPromise)
+        + connect(java.net.SocketAddress, io.netty.channel.ChannelPromise)
+
+    }
+    interface EventLoop
+    class VoidChannelPromise
+    abstract class SelectionKey
+
+
+    NioSocketChannel -down-> SelectorProvider
+    NioSocketChannel -left-> DefaultChannelPipeline
+    NioSocketChannel -down-> EventLoop
+    NioSocketChannel -down-> VoidChannelPromise
+    NioSocketChannel -down-> SelectionKey
+
+
+
+    interface ChannelHandler
+
+    DefaultChannelPipeline  -left-> ChannelHandler
+
+
+
+@enduml
