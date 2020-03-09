@@ -10,6 +10,8 @@ public class App {
 
 
     public static void main(String[] args) {
+        Integer tet = 1;
+
 
         App app = new App();
         app.print();
