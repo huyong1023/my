@@ -10,8 +10,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class DemoTest {
     @Test
     public void test(){
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("org/huyong/my/spring/ioc/spring.xml");
-        Object object = applicationContext.getBean("car");
-        System.out.print(object.getClass());
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("org/huyong/my/spring/mybatis/spring.xml");
+        //Object object = applicationContext.getBean("car");
+        //System.out.print(object.getClass());
     }
 }
