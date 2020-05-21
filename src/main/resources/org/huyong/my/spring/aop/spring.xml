@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 定义一个bean -->
+    <bean id="narCodeService" class="com.test.service.impl.NarCodeServiceImpl">
+    </bean>
+    <bean id="beanLifecycle" class="com.huyong.spring.BeanLifecycle" init-method="init" destroy-method="close">
+        <property name="name" value="张三"></property>
+        <property name="sex" value="男"></property>
+    </bean>
+
+    <!-- Spring后置处理器 -->
+    <bean id="postProcessor" class="org.huyong.my.spring.aop.PostProcessor"/>
+</beans>
