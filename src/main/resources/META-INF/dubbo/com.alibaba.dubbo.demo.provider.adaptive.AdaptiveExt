@@ -1,0 +1,4 @@
+dubbo=com.alibaba.dubbo.demo.provider.adaptive.impl.DubboAdaptiveExt
+cloud=com.alibaba.dubbo.demo.provider.adaptive.impl.SpringCloudAdaptiveExt
+thrift=com.alibaba.dubbo.demo.provider.adaptive.impl.ThriftAdaptiveExt
+com.alibaba.dubbo.demo.provider.adaptive.impl.AdaptiveExtWrapper
