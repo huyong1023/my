@@ -14,7 +14,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
-      <version>4.2.5.RELEASE</version>
+      <version>4.3.19.RELEASE</version>
     </dependency>
 
     <dependency>
@@ -78,7 +78,7 @@
     <dependency>
       <groupId>org.apache.zookeeper</groupId>
       <artifactId>zookeeper</artifactId>
-      <version>3.4.9</version>
+      <version>3.4.14</version>
     </dependency>
     <dependency>
       <groupId>com.101tec</groupId>
