@@ -1,14 +1,11 @@
 package org.huyong.my.dubbo.mock;
 
-import com.alibaba.dubbo.config.ReferenceConfig;
+
 import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
-import org.huyong.my.dubbo.entity.User;
-import org.huyong.my.dubbo.mock.service.UserService;
 import org.junit.Test;
-import org.junit.runners.model.InitializationError;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
