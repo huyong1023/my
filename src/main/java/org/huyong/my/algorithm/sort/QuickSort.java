@@ -1,6 +1,7 @@
 package org.huyong.my.algorithm.sort;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 public class QuickSort {
@@ -26,7 +27,7 @@ public class QuickSort {
 		Date data2 = new Date();
 		String date2Str = simpleDateFormat.format(data2);
 		System.out.println("排序前的时间是=" + date2Str);
-		//System.out.println("arr=" + Arrays.toString(arr));
+		System.out.println("arr=" + Arrays.toString(arr));
 	}
 
 	public static void quickSort(int[] arr,int left, int right) {

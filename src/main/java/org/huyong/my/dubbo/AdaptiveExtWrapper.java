@@ -1,4 +1,4 @@
-package org.huyong.my;
+package org.huyong.my.dubbo;
 
 import com.alibaba.dubbo.common.URL;
 import org.huyong.my.dubbo.AdaptiveExt;
