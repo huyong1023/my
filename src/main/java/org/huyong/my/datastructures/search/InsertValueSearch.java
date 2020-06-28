@@ -1,6 +1,4 @@
-package org.huyong.my.algorithm.search;
-
-import java.util.Arrays;
+package org.huyong.my.datastructures.search;
 
 public class InsertValueSearch {
 

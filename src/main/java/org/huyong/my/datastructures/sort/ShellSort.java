@@ -1,7 +1,6 @@
-package com.atguigu.sort;
+package org.huyong.my.datastructures.sort;
 
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 
 public class ShellSort {

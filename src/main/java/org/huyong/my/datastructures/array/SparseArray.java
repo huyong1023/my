@@ -1,4 +1,4 @@
-package org.huyong.my.algorithm.array;
+package org.huyong.my.datastructures.array;
 
 /**
  * Created by yonghu on 2020/6/18.

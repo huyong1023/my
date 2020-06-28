@@ -1,4 +1,4 @@
-package com.atguigu.sort;
+package org.huyong.my.datastructures.sort;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -7,14 +7,15 @@ import java.util.Date;
 public class MergetSort {
 
 	public static void main(String[] args) {
-		//int arr[] = { 8, 4, 5, 7, 1, 3, 6, 2 }; //
+		int arr[] = { 8, 7, 6, 5, 4, 3, 2, 1 }; //
 		
 		//测试快排的执行速度
 		// 创建要给80000个的随机的数组
+		/*
 		int[] arr = new int[8000000];
 		for (int i = 0; i < 8000000; i++) {
 			arr[i] = (int) (Math.random() * 8000000); // 生成一个[0, 8000000) 数
-		}
+		}*/
 		System.out.println("排序前");
 		Date data1 = new Date();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -28,7 +29,7 @@ public class MergetSort {
 		String date2Str = simpleDateFormat.format(data2);
 		System.out.println("排序前的时间是=" + date2Str);
  		
- 		//System.out.println("归并排序后=" + Arrays.toString(arr));
+ 		System.out.println("归并排序后=" + Arrays.toString(arr));
 	}
 	
 	
@@ -42,7 +43,6 @@ public class MergetSort {
 			mergeSort(arr, mid + 1, right, temp);
 			//合并
 			merge(arr, left, mid, right, temp);
-			
 		}
 	}
 	
@@ -56,7 +56,6 @@ public class MergetSort {
 	 * @param temp 做中转的数组
 	 */
 	public static void merge(int[] arr, int left, int mid, int right, int[] temp) {
-		
 		int i = left; // 初始化i, 左边有序序列的初始索引
 		int j = mid + 1; //初始化j, 右边有序序列的初始索引
 		int t = 0; // 指向temp数组的当前索引
@@ -106,7 +105,6 @@ public class MergetSort {
 			t += 1;
 			tempLeft += 1;
 		}
-		
 	}
 
 }

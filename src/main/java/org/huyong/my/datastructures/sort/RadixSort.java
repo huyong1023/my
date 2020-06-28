@@ -1,4 +1,4 @@
-package org.huyong.my.algorithm.sort;
+package org.huyong.my.datastructures.sort;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -7,8 +7,8 @@ import java.util.Date;
 public class RadixSort {
 
 	public static void main(String[] args) {
-		int arr[] = { 53, 3, 542, 748, 14, 214};
-		
+		int arr[] = { 1, 11, 1111, 11111, 21, 31, 41, 5111, 15111, 61, 71, 121, 1211, 12111, 321, 431, 541, 65111, 75111, 691, 791};
+
 		// 80000000 * 11 * 4 / 1024 / 1024 / 1024 =3.3G 
 //		int[] arr = new int[8000000];
 //		for (int i = 0; i < 8000000; i++) {

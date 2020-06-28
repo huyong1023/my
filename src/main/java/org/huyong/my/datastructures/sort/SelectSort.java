@@ -1,4 +1,4 @@
-package org.huyong.my.algorithm.sort;
+package org.huyong.my.datastructures.sort;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

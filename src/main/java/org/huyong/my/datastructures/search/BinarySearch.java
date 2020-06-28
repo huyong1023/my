@@ -1,4 +1,4 @@
-package org.huyong.my.algorithm.search;
+package org.huyong.my.datastructures.search;
 
 import java.util.ArrayList;
 import java.util.List;
