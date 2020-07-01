@@ -1,4 +1,4 @@
-package org.huyong.my.algorithm.greedy;
+package org.huyong.my.algorithm;
 
 import java.util.*;
 
