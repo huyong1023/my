@@ -7,17 +7,14 @@
  */
 package org.huyong.my.datastructures.queue;
 
-public class ArrayQueueDemo {
-}
 
-
-class ArrayQueue{
+public class ArrayQueueDemo implements ArrayQueue {
     private int maxSize;
     private int front;
     private int real;
     private int[] arr;
 
-    public ArrayQueue(int size){
+    public ArrayQueueDemo(int size){
         maxSize = size;
         arr = new int[size];
         front = -1;
@@ -29,10 +26,11 @@ class ArrayQueue{
         return  real == maxSize - 1;
     }
 
-
-    public boolean isEmputy(){
+    @Override
+    public boolean isEmpty() {
         return front == real;
     }
+
 
 
     public void  addQueue(int value){
@@ -45,24 +43,34 @@ class ArrayQueue{
 
 
     public int getQueue(){
-        if (isEmputy()){
+        if (isEmpty()){
             throw new RuntimeException("queue is empty");
         }
         front ++;
         int val = arr[front];
-        return front;
+        return val;
     }
 
 
     public void showQueue(){
-        for (int i = front; i < real; i++){
-            System.out.print(i + " ");
+        System.out.print( "[");
+        if (isEmpty()) {
+            System.out.println("]");
+            return;
         }
+
+        for (int i = front + 1; i <= real; i++){
+            if (i != front + 1){
+                System.out.print(" ");
+            }
+            System.out.print(arr[i]);
+        }
+        System.out.println("]");
 
     }
 
     public int headQueue(){
-        if (isEmputy()){
+        if (isEmpty()){
             throw new RuntimeException("queue is empty");
         }
         return arr[front + 1];
