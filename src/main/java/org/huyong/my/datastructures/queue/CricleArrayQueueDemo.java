@@ -8,8 +8,12 @@
 package org.huyong.my.datastructures.queue;
 
 
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public  class CricleArrayQueueDemo implements ArrayQueue {
+
+    private Queue queue = new ConcurrentLinkedQueue<>();
 
     private int maxSize;
     private int front;
@@ -43,7 +47,7 @@ public  class CricleArrayQueueDemo implements ArrayQueue {
     @Override
     public void addQueue(int val) {
         if (isFull()){
-            throw new RuntimeException("queue is full");
+            throw new RuntimeException(ArrayQueue.ERROR_MSG_FULL);
         }
         arr[real] = val;
         real = (real+1) % maxSize;
@@ -52,7 +56,7 @@ public  class CricleArrayQueueDemo implements ArrayQueue {
     @Override
     public int getQueue() {
         if (isEmpty()){
-            throw new RuntimeException("queue is null");
+            throw new RuntimeException(ArrayQueue.ERROR_MSG_EMPTY);
         }
         int val = arr[front];
         front = (front+1) % maxSize;

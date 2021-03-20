@@ -107,4 +107,27 @@ public class MergetSort {
 		}
 	}
 
+
+	public void merge(Comparable[] a, int lo, int mid, int hi){
+		int i = lo,  j = mid;
+		Comparable[] aux = new Comparable[a.length];
+
+		for (int k = lo; k < hi; k++){
+			aux[k] = a[k];
+		}
+
+		for (int k = lo; k < hi; k++){
+			if (k > mid)
+				a[k] = a[j++];
+			else if (j > hi) {
+				a[k] = a[i];
+			} else if (less（aux[j] , a[i])）{
+				a[k] = a[j++]
+			} else {
+				a[k] = a[i++];
+			}
+		}
+
+	}
+
 }

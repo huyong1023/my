@@ -9,6 +9,10 @@ package org.huyong.my.datastructures.queue;
 
 public interface ArrayQueue {
 
+    public String ERROR_MSG_INIT = "init queue size must Greater than zero";
+    public String ERROR_MSG_FULL = "queue is full";
+    public String ERROR_MSG_EMPTY = "queue is empty";
+
     public boolean isFull();
 
     public boolean isEmpty();
