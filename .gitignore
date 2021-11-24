@@ -1,0 +1,19 @@
+# for eclipse
+.classpath
+.project
+/.settings/
+/target/
+/*/target/
+
+# IntelliJ project files
+*.idea
+*.iml
+log/
+tmp/
+/DDL/
+
+
+#.for mac
+.DS_Store
+
+.gradle
