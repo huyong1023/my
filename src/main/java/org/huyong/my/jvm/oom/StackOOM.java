@@ -8,7 +8,6 @@ public class StackOOM {
         fun();
     }
 
-
     public static void main(String args[]){
         StackOOM stackOOM = new StackOOM();
         stackOOM.fun();

@@ -11,7 +11,7 @@ public class PolandNotation {
 
 
     public static void main(String[] args) {
-        String expression = "1+((2+3)*4)-5";//注意表达式
+        String expression = "(1+(4+5+2)-3)+(6+8)";//注意表达式
         List<String> infixExpressionList = toInfixExpressionList(expression);
         System.out.println("中缀表达式对应的 List=" + infixExpressionList); // ArrayList [1,+,(,(,2,+,3,),*,4,),-,5]
         List<String> suffixExpreesionList = parseSuffixExpreesionList(infixExpressionList);

@@ -8,6 +8,7 @@
 package org.huyong.my.datastructures.sort;
 
 public class Multiway {
+/*
 
     public static void merge(In[] streams){
         int N = streams.length;
@@ -26,5 +27,6 @@ public class Multiway {
                 pq.insert(i. steams[i].readString())
         }
     }
+*/
 
 }

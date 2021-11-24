@@ -13,7 +13,7 @@ import java.util.UUID;
  */
 public class ConstantPoolOOM {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws InterruptedException {
         List<Object> list = new ArrayList<>();
 
 
@@ -22,9 +22,6 @@ public class ConstantPoolOOM {
             System.out.println("list size :" +  i);
         }
     }
-
-
-
 }
 
 

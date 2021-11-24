@@ -9,25 +9,21 @@ import java.lang.reflect.Method;
 /**
  * Created by yonghu on 2020/5/27.
  */
-public class MethodAreaOOM {
-
+public class MethodAreaOOM  {
     static class OOMObject {
-
     }
 
-
-
-    public static void main(String[] args) {
-        for (int i = 0; i < 9999; i++ ) {
+    public static void main(String[] args) throws InterruptedException {
+        while (true) {
             Enhancer enhancer = new Enhancer();
             enhancer.setSuperclass(OOMObject.class);
             enhancer.setUseCache(false);
             enhancer.setCallback(new MethodInterceptor() {
-                @Override
-                public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
-                    return methodProxy.invoke(o, args);
+                public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
+                    return proxy.invoke(obj, args);
                 }
             });
+            enhancer.create();
         }
     }
 }

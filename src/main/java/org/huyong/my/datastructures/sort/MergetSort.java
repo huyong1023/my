@@ -116,7 +116,7 @@ public class MergetSort {
 			aux[k] = a[k];
 		}
 
-		for (int k = lo; k < hi; k++){
+		/*for (int k = lo; k < hi; k++){
 			if (k > mid)
 				a[k] = a[j++];
 			else if (j > hi) {
@@ -127,7 +127,7 @@ public class MergetSort {
 				a[k] = a[i++];
 			}
 		}
-
+*/
 	}
 
 }

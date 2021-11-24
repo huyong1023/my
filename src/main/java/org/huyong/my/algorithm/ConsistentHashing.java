@@ -59,11 +59,8 @@ public class ConsistentHashing {
             if(null != virtualNodes.get(hash) ){
                 System.out.print(hash);
             };
-
             virtualNodes.put(hash, nodeIp);
         }
-
-
 
         System.out.println(virtualNodes.size());
     }

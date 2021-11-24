@@ -14,14 +14,13 @@ public class Solution {
     }
 
     public int count(char[] chars, int length, int index, int[] map) {
-        if (length - 1 < index) {
+        if (length - 1 < index)
             return 1;
-        }
-
-        if (chars[index] == '0') {
+        if (chars[index] == '0')
             return 0;
-        }
+
         int res = count(chars, length, index + 1, map);
+
         if (map[index] != -1)
             return map[index];
         if (index < length - 1 && ((chars[index] - '0') * 10 + (chars[index + 1] - '0') < 27)) {
