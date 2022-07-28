@@ -11,6 +11,10 @@ public class Test {
 
     public static void main(String args[]) throws IOException, ClassNotFoundException {
 
+        Outter outter = new Outter();
+        Outter.Inner inner = outter.getInnerInstance();
+        inner.s();
+/*
         BlipGeneric bgeneric = new BlipGeneric("BlipGeneric", 2, Color.GREEN);
         Blip b = new Blip("Blip", 1, bgeneric, Color.RED);
 
@@ -23,9 +27,9 @@ public class Test {
         ByteArrayInputStream in = new ByteArrayInputStream(out.toByteArray());
         ObjectInputStream ois = new ObjectInputStream(in);
         Blip bb = (Blip) ois.readObject();
-        System.out.println(bb.toString());
+        System.out.println(bb.toString());*/
 
-
+        //StaticTest.Inner inner = new StaticTest.Inner();
 
 /*        ByteArrayOutputStream out2 = new ByteArrayOutputStream();
         ObjectOutputStream oos2 = new ObjectOutputStream(out2);

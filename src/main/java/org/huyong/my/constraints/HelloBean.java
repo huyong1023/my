@@ -1,6 +1,7 @@
 package org.huyong.my.constraints;
 
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
  * @Author: huyong03
@@ -10,4 +11,9 @@ import javax.validation.constraints.NotNull;
 public class HelloBean {
     @NotNull
     private String hoge;
+
+
+    public HelloBean(@NotNull String str){
+        this.hoge = Objects.requireNonNull(str);
+    }
 }

@@ -20,7 +20,7 @@ public class HelloEJB {
         Validator validator = factory.getValidator();
 
         // Bean を作成
-        HelloBean bean = new HelloBean();
+        HelloBean bean = new HelloBean("str");
 
         // バリデーションを実行
         Set<ConstraintViolation<HelloBean>> result = validator.validate(bean);

@@ -1,5 +1,6 @@
 package org.huyong.my.collections;
 
+
 import java.util.*;
 
 /**
@@ -21,8 +22,6 @@ public class Demo {
 
         Session e = Session.valueOf("SPRING");
         System.out.println(e.ordinal());
-
-
 
 
         EnumSet e2 = EnumSet.noneOf(Session.class);
