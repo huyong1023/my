@@ -1,6 +1,8 @@
-package org.huyong.my.datastructures.sort;
+package org.huyong.my.algorithm.sort;
 
 import org.junit.Test;
+
+import java.util.Arrays;
 
 public class BubbleSort {
 

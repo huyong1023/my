@@ -1,0 +1,22 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+    -> DispatcherServlet : doDispatch
+    activate DispatcherServlet
+    DispatcherServlet -> HandlerMapping : getHandler()
+    HandlerMapping -> DispatcherServlet : HandlerExecutionChain
+    DispatcherServlet -> HandlerExecutionChain : getHandler
+    HandlerExecutionChain -> DispatcherServlet : HandlerAdapter
+    DispatcherServlet -> AbstractHandlerMethodAdapter : handle()
+    AbstractHandlerMethodAdapter -> RequestMappingHandlerAdapter : handleInternal
+    RequestMappingHandlerAdapter-> RequestMappingHandlerAdapter : invokeHandlerMethod
+
+    RequestMappingHandlerAdapter -> ServletInvocableHandlerMethod : invokeAndHandle
+
+    ServletInvocableHandlerMethod -> InvocableHandlerMethod : invokeForRequest
+    InvocableHandlerMethod -> ServletInvocableHandlerMethod : returnValue
+    ServletInvocableHandlerMethod -> HandlerMethodReturnValueHandlerComposite : handleReturnValue
+    HandlerMethodReturnValueHandlerComposite -> RequestResponseBodyMethodProcessor : handleReturnValue
+    RequestResponseBodyMethodProcessor -> AbstractMessageConverterMethodProcessor : writeWithMessageConverters()
+@enduml

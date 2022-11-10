@@ -1,0 +1,31 @@
+<servlet>
+    <servlet-name>dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+</servlet>
+<servlet-mapping>
+<servlet-name>dispatcher</servlet-name>
+<!-- 拦截所有的请求 -->
+<url-pattern>/</url-pattern>
+</servlet-mapping>
+
+        <!-- 1-->
+<bean id="simpleUrlHandlerMapping"
+      class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+<property name="mappings">
+    <props>
+        <!-- /hello 路径的请求交给 id 为 helloController 的控制器处理-->
+        <prop key="/hello">helloController</prop>
+    </props>
+</property>
+</bean>
+<bean id="helloController" class="controller.HelloController"></bean>
+
+<!-- 2-->
+<context:component-scan base-package="controller"/>
+
+<bean id="viewResolver"
+      class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+<property name="prefix" value="/WEB-INF/page/" />
+<property name="suffix" value=".jsp" />
+</bean>

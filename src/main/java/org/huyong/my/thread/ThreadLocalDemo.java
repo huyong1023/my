@@ -15,10 +15,12 @@ public class ThreadLocalDemo {
         }
     };
 
+    public static final ThreadLocal<Object> threadLocal2 = new ThreadLocal<Object>(){};
+
 
     public static void main(String[] args){
         new Thread(new MyIntegerTask("test1")).start();
-        new Thread(new MyIntegerTask("test2")).start();
+        //new Thread(new MyIntegerTask("test2")).start();
 
     }
 
@@ -35,9 +37,12 @@ class MyIntegerTask implements Runnable {
             if(null == ThreadLocalDemo.threadLocal.get()){
                 ThreadLocalDemo.threadLocal.set(0);
                 System.out.println("thread:" + name + " : 0");
+                ThreadLocalDemo.threadLocal2.get();
+                System.out.println("thread2:" + name + " : " + ThreadLocalDemo.threadLocal2.get());
             } else {
                 int num = (Integer) ThreadLocalDemo.threadLocal.get();
                 System.out.println("thread:" + name + " : " +ThreadLocalDemo.threadLocal.get());
+                System.out.println("thread2:" + name + " : " + ThreadLocalDemo.threadLocal2.get());
                 ThreadLocalDemo.threadLocal.set(num + 1);
                 if(i == 3){
                     ThreadLocalDemo.threadLocal.remove();

@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+class HandlerExecutionChain{
+    Object handler
+    List<HandlerInterceptor> interceptorList
+}
+
+interface HandlerMapping {
+    HandlerExecutionChain getHandler()
+}
+
+
+interface HandlerAdapter {
+    ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object handler)
+}
+
+
+
+
+class AbstractHandlerMapping {
+    List<HandlerInterceptor> adaptedInterceptors;
+
+
+    getHandlerExecutionChain()
+}
+
+
+HandlerMapping <|.. AbstractHandlerMapping
+@enduml

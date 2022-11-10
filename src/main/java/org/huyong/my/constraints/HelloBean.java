@@ -14,6 +14,6 @@ public class HelloBean {
 
 
     public HelloBean(@NotNull String str){
-        this.hoge = Objects.requireNonNull(str);
+        this.hoge = str;
     }
 }
