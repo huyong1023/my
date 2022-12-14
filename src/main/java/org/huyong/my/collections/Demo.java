@@ -24,6 +24,9 @@ public class Demo {
         System.out.println(e.ordinal());
 
 
+        Hashtable table = new Hashtable<>();
+
+
         EnumSet e2 = EnumSet.noneOf(Session.class);
         e2.add(Session.SPRING);
         e2.add(Session.SUMMER);

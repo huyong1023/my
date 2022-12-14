@@ -7,7 +7,6 @@
  */
 package org.huyong.my.datastructures.linkedlist;
 
-import org.omg.CORBA.NO_IMPLEMENT;
 
 public abstract class LinkedList {
 }
