@@ -9,6 +9,7 @@ interface Serializable
 abstract class  GenericServlet{
     init(ServletConfig config)
     init()
+
 }
 
 abstract class HttpServlet{
@@ -17,7 +18,9 @@ abstract class HttpServlet{
 
 abstract class FrameworkServlet
 
-class DispatcherServlet
+class DispatcherServlet {
+
+}
 
 
 interface Aware
@@ -31,8 +34,24 @@ abstract class HttpServletBean{
 
 class FrameworkServlet {
     initServletBean()
+    initWebApplicationContext();
+    initFrameworkServlet()
+
+
+    doGet()
+    doPost()
+    processRequest()
 }
 
+
+class DispatcherServlet{
+    List<HandlerMapping> handlerMappings;
+    List<HandlerAdapter> handlerAdapters
+    List<ViewResolver> viewResolvers
+
+    doService()
+    doDispatch()
+}
 
 Aware <|.. ApplicationContextAware
 ApplicationContextAware <|.. DispatcherServlet

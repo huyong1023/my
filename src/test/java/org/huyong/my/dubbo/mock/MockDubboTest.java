@@ -1,11 +1,11 @@
 package org.huyong.my.dubbo.mock;
 
 
-import org.apache.log4j.ConsoleAppender;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PatternLayout;
+
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.event.Level;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -18,9 +18,9 @@ import static org.junit.Assert.assertNull;
  */
 public class MockDubboTest {
     static {
-        Logger rootLogger = Logger.getRootLogger();
-        rootLogger.setLevel(Level.INFO);
-        rootLogger.addAppender(new ConsoleAppender( new PatternLayout("%-6r [%p] %c - %m%n")));
+        Logger rootLogger = LoggerFactory.getLogger(MockDubboTest.class);
+       // rootLogger.setLevel(Level.INFO);
+        //rootLogger.addAppender(new ConsoleAppender( new PatternLayout("%-6r [%p] %c - %m%n")));
     }
 
 

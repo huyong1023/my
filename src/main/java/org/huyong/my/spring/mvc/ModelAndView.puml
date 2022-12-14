@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class ModelAndView {
+    Object view;
+    ModelMap model;
+
+    init(ServletConfig config)
+}
+
+
+@enduml

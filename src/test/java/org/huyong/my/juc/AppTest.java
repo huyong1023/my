@@ -13,6 +13,8 @@ import java.util.concurrent.TimeUnit;
 public class AppTest {
     @Test
     public void cachedThred() {
+        Thread t = new Thread();
+        t.start();
         ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
         for (int i = 0; i < 10; i++) {
             final int index = i;

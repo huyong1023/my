@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+interface HandlerAdapter {
+    handle(HttpServletRequest request, HttpServletResponse response, Object handler)
+}
+
+class AbstractHandlerMethodAdapter {
+    abstract ModelAndView handleInternal(HttpServletRequest request, HttpServletResponse response, HandlerMethod handlerMethod)
+}
+
+class RequestMappingHandlerAdapter{
+    handleInternal()
+    invokeHandlerMethod()
+    getModelAndView(ModelAndViewContainer mavContainer, ModelFactory modelFactory, NativeWebRequest webRequest)
+
+}
+
+HandlerAdapter <|.. AbstractHandlerMethodAdapter
+
+AbstractHandlerMethodAdapter <|.. RequestMappingHandlerAdapter
+
+@enduml

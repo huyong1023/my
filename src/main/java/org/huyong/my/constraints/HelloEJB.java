@@ -19,8 +19,8 @@ public class HelloEJB {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
 
-        // Bean を作成
-        HelloBean bean = new HelloBean("str");
+        // Bean 作成
+        HelloBean bean = new HelloBean(null);
 
         // バリデーションを実行
         Set<ConstraintViolation<HelloBean>> result = validator.validate(bean);
